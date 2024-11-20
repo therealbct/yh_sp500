@@ -1,5 +1,7 @@
 import pandas as pd
 import yfinance as yf
+from datetime import datetime
+import pytz
 
 def get_sp500_tickers():
     sp500 = pd.read_html('https://en.wikipedia.org/wiki/List_of_S%26P_500_companies')[0]
@@ -14,7 +16,7 @@ def get_additional_etfs():
 
 def fetch_and_save_data():
     tickers = get_sp500_tickers() + get_additional_etfs()
-    data = yf.download(tickers, start="2015-01-01", end="2024-12-31", progress=False)['Adj Close']
+    data = yf.download(tickers, start="2015-01-01", end=datetime.now(pytz.timezone("America/New_York")), progress=False)['Adj Close']
     # data.to_parquet("sp500_etf.parquet")
     data.to_pickle("sp500_etf.pkl")
     
