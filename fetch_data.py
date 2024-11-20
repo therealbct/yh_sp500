@@ -15,7 +15,8 @@ def get_additional_etfs():
 def fetch_and_save_data():
     tickers = get_sp500_tickers() + get_additional_etfs()
     data = yf.download(tickers, start="2015-01-01", end="2024-12-31", progress=False)['Adj Close']
-    data.to_parquet("sp500_etf.parquet")
+    # data.to_parquet("sp500_etf.parquet")
+    data.to_pickle("sp500_etf.pkl")
     
 if __name__ == "__main__":
     fetch_and_save_data()
