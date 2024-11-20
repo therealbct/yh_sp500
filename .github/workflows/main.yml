@@ -20,7 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install pandas yfinance lxml
+          pip install pandas yfinance lxml pyarrow
 
       - name: Run Script
         run: python fetch_data.py
