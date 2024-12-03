@@ -7,26 +7,23 @@ on:
 
 jobs:
   fetch-data:
-    # runs-on: ubuntu-latest
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0  # Ensure full history is fetched for rebase
 
-      # - name: Set Up Python
-      #   uses: actions/setup-python@v4
-      #   with:
-      #     python-version: 3.9
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
-        continue-on-error: true
 
       - name: Install Dependencies
         run: |
-          pip install pandas yfinance lxml # pyarrow
+          pip install pandas yfinance lxml
 
       - name: Run Script
         run: python fetch_data.py
@@ -35,11 +32,16 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Fetch latest changes and rebase
           git fetch origin main
-          git rebase origin/main
+          git rebase origin/main || git rebase --abort
+
+          # Stage and commit changes
           git add sp500_etf.pkl
           git commit -m "Update S&P 500 and ETF data" || echo "No changes to commit"
-          git push origin main
+
+          # Force push if necessary (handles non-fast-forward errors)
+          git push origin main --force-with-lease
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ACTIONS_STEP_DEBUG: true
