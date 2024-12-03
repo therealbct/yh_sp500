@@ -7,16 +7,22 @@ on:
 
 jobs:
   fetch-data:
-    runs-on: ubuntu-latest
+    # runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
 
+      # - name: Set Up Python
+      #   uses: actions/setup-python@v4
+      #   with:
+      #     python-version: 3.9
       - name: Set Up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.9
+        continue-on-error: true
 
       - name: Install Dependencies
         run: |
@@ -35,3 +41,4 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTIONS_STEP_DEBUG: true
