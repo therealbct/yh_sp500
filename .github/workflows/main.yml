@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # Ensure full history is fetched for rebase
+          fetch-depth: 0  # Fetch full history to ensure clean reset
 
       - name: Set Up Python
         uses: actions/setup-python@v4
@@ -28,20 +28,20 @@ jobs:
       - name: Run Script
         run: python fetch_data.py
 
-      - name: Commit and Push Data
+      - name: Force Update Data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Fetch latest changes and rebase
+
+          # Reset to remote branch state
           git fetch origin main
-          git rebase origin/main || git rebase --abort
+          git reset --hard origin/main
 
-          # Stage and commit changes
+          # Add and commit the updated file
           git add sp500_etf.pkl
-          git commit -m "Update S&P 500 and ETF data" || echo "No changes to commit"
+          git commit -m "Force update S&P 500 and ETF data" || echo "No changes to commit"
 
-          # Force push if necessary (handles non-fast-forward errors)
-          git push origin main --force-with-lease
+          # Force push to ensure the remote branch is updated
+          git push origin main --force
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
