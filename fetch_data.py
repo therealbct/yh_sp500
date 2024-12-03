@@ -1,4 +1,5 @@
 import pandas as pd
+import pyarrow
 import yfinance as yf
 from datetime import datetime
 import pytz
@@ -21,8 +22,12 @@ def fetch_and_save_data():
     data = yf.download(tickers, start="2015-01-01", end=datetime.now(pytz.timezone("America/New_York")), progress=False)['Adj Close']
 
     print("Saving to sp500_etf.parquet..", file=sys.stderr)
-    data.to_parquet("sp500_etf.parquet", engine='pyarrow')
-    print("Data saved to sp500_etf.parquet", file=sys.stderr)
+    # data.to_parquet("sp500_etf.parquet", engine='pyarrow')
+    try:
+        data.to_parquet("sp500_etf.parquet", engine='pyarrow')
+        print("Parquet file saved successfully.", file=sys.stderr)
+    except Exception as e:
+        print(f"Error saving to Parquet: {e}", file=sys.stderr)
 
 if __name__ == "__main__":
     fetch_and_save_data()
