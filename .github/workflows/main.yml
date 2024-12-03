@@ -35,10 +35,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main  # Ensure local branch is up-to-date
+          git fetch origin main
+          git rebase origin/main
           git add sp500_etf.pkl
-          git commit -m "Update S&P 500 and ETF data"
-          git push
+          git commit -m "Update S&P 500 and ETF data" || echo "No changes to commit"
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ACTIONS_STEP_DEBUG: true
