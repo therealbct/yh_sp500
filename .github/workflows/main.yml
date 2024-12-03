@@ -38,7 +38,7 @@ jobs:
           git reset --hard origin/main
 
           # Add and commit the updated file
-          git add sp500_etf.pkl
+          git add sp500_etf.parquet sp500_etf.pkl
           git commit -m "Force update S&P 500 and ETF data" || echo "No changes to commit"
 
           # Force push to ensure the remote branch is updated
