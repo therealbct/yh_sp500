@@ -2,69 +2,53 @@ name: Fetch S&P 500 and ETF Data
 
 on:
   schedule:
-    - cron: '00 23 * * 1-5'  # Run M-F 23 UTC (6EST or 7EDT)
-  workflow_dispatch:  # Allow manual runs
+    - cron: "00 23 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   fetch-data:
     runs-on: ubuntu-22.04
+    timeout-minutes: 330
 
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0  # Fetch full history to ensure clean reset
+          fetch-depth: 0
 
       - name: Set Up Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          
-      - name: Verify Python
-        run: |
-          python -VV
-          which python
-          python -m pip -V
 
       - name: Install Dependencies
         run: |
           python -m pip install -U pip
-          python -m pip install pandas yfinance lxml numpy==1.24.4 pyarrow
-      # - name: Install Dependencies
-      #   run: |
-      #     pip install pandas yfinance lxml numpy==1.24.4 pyarrow
+          pip install pandas pyarrow requests pytz
 
       - name: Run Script
         run: python fetch_data.py
 
-      - name: Verify Parquet File
-        run: ls -l sp500_etf.parquet
-        
-      - name: Force Update Data
+      - name: Verify outputs
+        run: |
+          ls -l sp500_etf.parquet sp500_etf_meta.json || true
+          python - << 'EOF'
+          import json, pandas as pd
+          df = pd.read_parquet("sp500_etf.parquet")
+          print("shape:", df.shape)
+          print("max_date:", df.index.max())
+          with open("sp500_etf_meta.json","r") as f:
+              print("meta:", json.load(f))
+          EOF
+
+      - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # Reset to remote branch state
-          # git fetch origin main
-          # git reset --hard origin/main
-
-          # Add and commit the updated file
-          git add sp500_etf.parquet sp500_etf.pkl
-          git commit -m "Force update S&P 500 and ETF data" || echo "No changes to commit"
-
-          # Force push to ensure the remote branch is updated
-          # git push origin main --force
-          git push origin main
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Check data freshness
-        run: |
-          python - << 'EOF'
-          import pandas as pd
-          df = pd.read_parquet("sp500_etf.parquet")
-          print("Rows:", len(df))
-          print("Max date:", df.index.max())
-          EOF
+          git add sp500_etf.parquet sp500_etf_meta.json sp500_etf_failures.csv || true
+          git commit -m "Update S&P 500 and ETF data" || echo "No changes to commit"
+          git push
