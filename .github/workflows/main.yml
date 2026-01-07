@@ -37,14 +37,24 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
           # Reset to remote branch state
-          git fetch origin main
-          git reset --hard origin/main
+          # git fetch origin main
+          # git reset --hard origin/main
 
           # Add and commit the updated file
           git add sp500_etf.parquet sp500_etf.pkl
           git commit -m "Force update S&P 500 and ETF data" || echo "No changes to commit"
 
           # Force push to ensure the remote branch is updated
-          git push origin main --force
+          # git push origin main --force
+          git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check data freshness
+        run: |
+          python - << 'EOF'
+          import pandas as pd
+          df = pd.read_parquet("sp500_etf.parquet")
+          print("Rows:", len(df))
+          print("Max date:", df.index.max())
+          EOF
