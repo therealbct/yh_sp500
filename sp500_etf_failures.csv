@@ -3,32 +3,32 @@ FI,FI: no data
 IPG,IPG: no data
 K,K: no data
 WBA,WBA: no data
-WSM,WSM: empty or missing columns
-WMB,WMB: empty or missing columns
-WTW,WTW: empty or missing columns
-WDAY,WDAY: empty or missing columns
-WYNN,WYNN: empty or missing columns
-XEL,XEL: empty or missing columns
-XYL,XYL: empty or missing columns
-YUM,YUM: empty or missing columns
-ZBRA,ZBRA: empty or missing columns
-ZBH,ZBH: empty or missing columns
-ZTS,ZTS: empty or missing columns
-SPY,SPY: empty or missing columns
-XOP,XOP: empty or missing columns
-XLE,XLE: empty or missing columns
-USO,USO: empty or missing columns
-DBC,DBC: empty or missing columns
-GLD,GLD: empty or missing columns
-JETS,JETS: empty or missing columns
-PEJ,PEJ: empty or missing columns
-VNQ,VNQ: empty or missing columns
-IYR,IYR: empty or missing columns
-HYG,HYG: empty or missing columns
-JNK,JNK: empty or missing columns
-ANGL,ANGL: empty or missing columns
-DVY,DVY: empty or missing columns
-VYM,VYM: empty or missing columns
-SDIV,SDIV: empty or missing columns
-EMB,EMB: empty or missing columns
-HYEM,HYEM: empty or missing columns
+WSM,"WSM: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+WMB,"WMB: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+WTW,"WTW: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+WDAY,"WDAY: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+WYNN,"WYNN: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+XEL,"XEL: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+XYL,"XYL: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+YUM,"YUM: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+ZBRA,"ZBRA: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+ZBH,"ZBH: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+ZTS,"ZTS: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+SPY,"SPY: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+XOP,"XOP: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+XLE,"XLE: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+USO,"USO: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+DBC,"DBC: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+GLD,"GLD: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+JETS,"JETS: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+PEJ,"PEJ: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+VNQ,"VNQ: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+IYR,"IYR: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+HYG,"HYG: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+JNK,"JNK: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+ANGL,"ANGL: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+DVY,"DVY: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+VYM,"VYM: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+SDIV,"SDIV: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+EMB,"EMB: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+HYEM,"HYEM: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
