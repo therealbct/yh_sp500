@@ -27,7 +27,7 @@ PER_TICKER_RETRIES = 3
 SLEEP_BASE = 0.25
 
 PAUSE_EVERY = 1
-PAUSE_SECS = 0.05
+PAUSE_SECS = 0.25
 
 OUT_PARQUET = "sp500_etf.parquet"
 OUT_FAILURES = "sp500_etf_failures.csv"
@@ -66,10 +66,9 @@ def get_additional_etfs() -> List[str]:
     ]
 
 
-def _get_text(session: requests.Session, url: str) -> str:
-    r = session.get(url, timeout=REQ_TIMEOUT, headers={"User-Agent": UA})
-    r.raise_for_status()
-    return r.text
+def _get_text(session: requests.Session, url: str):
+    r = session.get(url, timeout=REQ_TIMEOUT, headers={"User-Agent": UA, "Accept": "text/csv,text/plain;q=0.9,*/*;q=0.1"})
+    return r.status_code, r.headers.get("content-type", ""), r.text
 
 
 def download_stooq_close_one(
@@ -81,10 +80,22 @@ def download_stooq_close_one(
     last_err = None
     for attempt in range(1, PER_TICKER_RETRIES + 1):
         try:
-            txt = _get_text(session, url)
-            if not txt or txt.startswith("No data"):
+            status, ct, txt = _get_text(session, url)
+            
+            head = (txt[:200] or "").strip().lower()
+            
+            # Permanent "no data" from Stooq
+            if head.startswith("no data"):
                 raise RuntimeError("no data")
-
+            
+            # Transient: rate-limit / block / HTML / anything non-CSV
+            is_htmlish = head.startswith("<!doctype") or head.startswith("<html") or "too many requests" in head
+            is_not_csv = (not head.startswith("date,")) and ("date,open,high,low,close" not in head)
+            
+            if status in (429, 500, 502, 503, 504) or is_htmlish or is_not_csv:
+                raise RuntimeError(f"transient non-csv response (status={status}, ct={ct}, head={head[:80]})")
+            
+            # df = pd.read_csv(StringIO(txt), usecols=["Date", "Close"])            
             df = pd.read_csv(StringIO(txt))  # Date,Open,High,Low,Close,Volume
             if df.empty or "Date" not in df.columns or "Close" not in df.columns:
                 raise RuntimeError("empty or missing columns")
@@ -120,7 +131,8 @@ def download_stooq_prices(
 
             if i % 25 == 0:
                 print(f"[stooq] done {i}/{len(tickers)}")
-
+                time.sleep(2.0)    # longer pause every 25 ticker to prevent rate limits
+    
             if PAUSE_EVERY and (i % PAUSE_EVERY == 0):
                 time.sleep(PAUSE_SECS)
 
