@@ -3,6 +3,8 @@ FI,FI: no data
 IPG,IPG: no data
 K,K: no data
 WBA,WBA: no data
+WDC,"WDC: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
+WY,"WY: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
 WSM,"WSM: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
 WMB,"WMB: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
 WTW,"WTW: transient non-csv response (status=200, ct=text/plain, head=exceeded the daily hits limit)"
