@@ -1,10 +1,10 @@
 {
-  "generated_at_et": "2026-02-18T18:17:38.487662-05:00",
+  "generated_at_et": "2026-02-19T18:26:26.057879-05:00",
   "lookback_years": 4,
   "start": "2022-01-01",
-  "end": "2026-02-18",
+  "end": "2026-02-19",
   "tickers_requested": 521,
-  "tickers_ok": 485,
-  "failures": 36,
-  "max_date": "2026-02-18"
+  "tickers_ok": 370,
+  "failures": 151,
+  "max_date": "2026-02-19"
 }
