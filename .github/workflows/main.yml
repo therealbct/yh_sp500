@@ -8,6 +8,9 @@ on:
 permissions:
   contents: write
 
+env:
+  STOOQ_APIKEY: ${{ secrets.STOOQ_APIKEY }}
+  
 jobs:
   fetch-data:
     runs-on: ubuntu-22.04
