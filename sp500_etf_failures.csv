@@ -1,5 +1,15 @@
 ,error
 Q,Q: no data
+WELL,WELL: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WST,WST: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WDC,WDC: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WY,WY: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WSM,WSM: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WMB,WMB: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WTW,WTW: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WDAY,WDAY: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WYNN,WYNN: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+XEL,XEL: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 XYL,XYL: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 YUM,YUM: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 ZBRA,ZBRA: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
