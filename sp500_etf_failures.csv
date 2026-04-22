@@ -1,5 +1,10 @@
 ,error
 Q,Q: no data
+WBD,WBD: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WM,WM: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WAT,WAT: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WEC,WEC: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+WFC,WFC: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 WELL,WELL: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 WST,WST: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 WDC,WDC: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
