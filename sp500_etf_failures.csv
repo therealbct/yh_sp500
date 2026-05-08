@@ -4,7 +4,7 @@ XYL,XYL: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded
 YUM,YUM: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 ZBRA,ZBRA: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 ZBH,ZBH: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
-ZTS,ZTS: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
+ZTS,"ZTS: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
 SPY,SPY: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 XOP,XOP: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
 XLE,XLE: non-csv response status=200 ct=text/plain; charset=UTF-8 head='exceeded the daily hits limit'
